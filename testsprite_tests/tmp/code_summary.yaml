@@ -1,0 +1,105 @@
+version: "2"
+type: frontend
+tech_stack:
+  - Python
+  - Streamlit
+  - Amazon Bedrock (Claude Sonnet 4.6)
+  - MiniMax API (Anthropic-compatible)
+  - Datadog API
+routes:
+  - path: /
+    file: app.py
+    auth_required: false
+    description: Main single-page Streamlit app with multi-phase flow
+features:
+  - name: Product Description Input
+    description: User enters a product description to kick off the marketing strategy generation
+    files:
+      - app.py
+    entry_route: /
+    user_interactions:
+      - Enter product description in text area
+      - Click "Start Discovery" button to begin AI discovery chat
+      - Click "Skip Discovery" button to go straight to strategy generation
+    api_calls: []
+    auth_required: false
+  - name: Discovery Chat
+    description: Multi-turn AI chat powered by MiniMax M2.5 that asks targeted questions to understand the ICP trigger, hack, and win
+    files:
+      - app.py
+    entry_route: /
+    user_interactions:
+      - View AI-generated question in chat interface
+      - Type answer in chat input box and submit
+      - Click "I've shared enough — Generate Strategy" to skip remaining questions
+    api_calls:
+      - method: POST
+        endpoint: https://api.minimax.io/anthropic (MiniMax Discovery)
+    auth_required: false
+  - name: Strategy Generation
+    description: Generates ICP, identifies top 3 platforms, and runs parallel platform specialists via Amazon Bedrock
+    files:
+      - app.py
+    entry_route: /
+    user_interactions:
+      - View discovery conversation summary in expandable section
+      - Click "Generate Strategy" button
+      - View spinner while Agent 1 (Strategist) maps ICP and platforms
+      - View spinner while platform specialists run in parallel
+      - View spinner while quality judges evaluate playbooks
+    api_calls:
+      - method: POST
+        endpoint: Amazon Bedrock Converse API (Strategist)
+      - method: POST
+        endpoint: Amazon Bedrock Converse API (Platform Specialists - parallel)
+      - method: POST
+        endpoint: https://api.minimax.io/anthropic (Quality Judge)
+    auth_required: false
+  - name: Strategy Results Display
+    description: Displays generated ICP and per-platform playbooks with quality scores in tabbed interface
+    files:
+      - app.py
+    entry_route: /
+    user_interactions:
+      - View ICP tab with ideal customer profile details
+      - Click platform tabs (e.g., Reddit, Twitter, LinkedIn) to view playbooks
+      - View quality score badge and rationale for each platform
+      - View WHERE TO GO, WHAT TO TALK ABOUT, WHAT TO SAY, HOW TO ENGAGE sections
+    api_calls: []
+    auth_required: false
+  - name: Datadog Integration
+    description: Sends campaign metrics and logs to Datadog for observability
+    files:
+      - app.py
+    entry_route: /
+    user_interactions:
+      - Enter Datadog API key in sidebar text input
+      - View success/warning status for Datadog connection
+    api_calls:
+      - method: POST
+        endpoint: https://api.datadoghq.com (Metrics API)
+      - method: POST
+        endpoint: https://http-intake.logs.datadoghq.com/api/v2/logs
+    auth_required: false
+  - name: Credentials Sidebar
+    description: Sidebar showing status of AWS Bedrock, MiniMax, and Datadog credentials loaded from .env
+    files:
+      - app.py
+    entry_route: /
+    user_interactions:
+      - View Bedrock credential status (OK or warning)
+      - View MiniMax credential status (OK or warning)
+      - Enter Datadog API key
+      - Click "Start Over" to reset all session state
+    api_calls: []
+    auth_required: false
+known_limitations:
+  - issue: Discovery chat requires ANTHROPIC_API_KEY (MiniMax key) to be set; "Start Discovery" button is disabled without it
+    location: app.py:475
+    impact: Users without MiniMax key can only use "Skip Discovery" flow
+  - issue: Strategy generation requires AWS credentials; "Skip Discovery" and "Generate Strategy" buttons are disabled without them
+    location: app.py:501
+    impact: Users without Bedrock credentials cannot generate any strategy
+  - issue: Datadog metrics silently fail if API key is invalid; only a toast warning is shown
+    location: app.py:701
+    impact: Metrics may not be recorded without user awareness

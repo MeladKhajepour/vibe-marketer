@@ -1,0 +1,17 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:8501",
+  "executionArgs": {
+    "projectName": "vibecoder-cmo",
+    "projectPath": "/Users/meladkhajepour/Documents/vibecoder-cmo",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-iz-TWh0so_WIGTfOYJy6-ZcnVf3H8GHSKUSlrGMQ1afjCmZPFonazl9FLk5sMHp1qH74e7-YT1cutA3j_bAhS9TfIHHmW6uwWd2V7UVR17XEbjXMzdtPZIUfwknkJ1CV4K8"
+    }
+  },
+  "serverPort": 59022,
+  "proxy": "http://568afcd2-3b12-49bd-9afa-471bc868daf3:1iEKVwR0oOrxY8YM8htvyq4o7tvAoIrz@tun.testsprite.com:8080"
+}

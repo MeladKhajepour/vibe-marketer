@@ -1,0 +1,1268 @@
+[
+  {
+    "id": "TC001",
+    "title": "Start Discovery after entering a product description shows first AI question",
+    "description": "Verifies that providing a product description and starting discovery opens the chat and displays an AI-generated question.",
+    "category": "Product Description Input",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Product description\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"A subscription-based AI tool that helps small gyms create weekly social media posts and ads\" into the product description text area"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"chat\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"?\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Skip Discovery after entering a product description shows discovery summary section",
+    "description": "Verifies that skipping discovery proceeds to the next phase and shows a discovery conversation summary section.",
+    "category": "Product Description Input",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Product description\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"An e-commerce brand selling eco-friendly refillable cleaning products for households\" into the product description text area"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Skip Discovery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Discovery\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"expandable\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Start Discovery without entering a product description is blocked with visible feedback",
+    "description": "Verifies the app prevents starting discovery when the product description is empty and provides visible user feedback.",
+    "category": "Product Description Input",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Product description\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"product description\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"chat\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Skip Discovery without entering a product description is blocked with visible feedback",
+    "description": "Verifies the app prevents skipping discovery when the product description is empty and provides visible user feedback.",
+    "category": "Product Description Input",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Product description\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Skip Discovery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"product description\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Discovery\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Product description supports a long multi-paragraph input",
+    "description": "Verifies a long, multi-paragraph product description can be entered and then used to proceed via Skip Discovery.",
+    "category": "Product Description Input",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Product description\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"We are building a B2B SaaS platform for procurement teams.\n\nIt centralizes vendor onboarding, contract storage, and spend analytics. Key buyers are mid-market companies.\n\nPrimary goal: reduce maverick spend and improve compliance.\" into the product description text area"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Skip Discovery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Discovery\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"expandable\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Product description supports special characters without breaking the flow",
+    "description": "Verifies that special characters in the product description do not prevent moving forward with Start Discovery.",
+    "category": "Product Description Input",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Product description\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Product: \\\"\\\"Vibe+\\\"\\\" — helps creators grow 2x faster; targets ages 18–35; pricing $9.99/mo (incl. VAT).\" into the product description text area"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"chat\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"?\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Switching from Start Discovery to Skip Discovery after returning to input works cleanly",
+    "description": "Verifies the user can start discovery and then use the input flow again to skip discovery without confusing UI state.",
+    "category": "Product Description Input",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"A mobile app that helps students plan study sessions and track progress\" into the product description text area"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"chat\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Skip Discovery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Discovery\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Start Discovery and answer one question to receive the next AI question",
+    "description": "Verifies the discovery chat can be started and progresses from one AI question to the next after a user answer is submitted.",
+    "category": "Discovery Chat",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Discovery\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an AI-generated question is visible in the chat interface"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Our product helps busy founders plan weekly marketing in 30 minutes.\" into the chat input box"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the typed answer text is visible in the chat interface"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a new AI-generated question is visible in the chat interface"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Skip discovery early using \"I've shared enough — Generate Strategy\" and see conversation summary",
+    "description": "Verifies the user can end discovery early and a discovery summary becomes visible in an expandable section.",
+    "category": "Discovery Chat",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an AI-generated question is visible in the chat interface"
+      },
+      {
+        "type": "action",
+        "description": "Type \"We target B2B SaaS teams who need consistent distribution.\" into the chat input box"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "action",
+        "description": "Click \"I've shared enough — Generate Strategy\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Discovery\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Discovery conversation summary\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Discovery chat input supports multi-sentence answers and preserves them in chat history",
+    "description": "Verifies that longer, multi-sentence user input can be submitted and remains visible in the chat transcript.",
+    "category": "Discovery Chat",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an AI-generated question is visible in the chat interface"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Trigger: churn risk from inconsistent pipeline. Hack: repurpose 1 long-form into 10 short posts. Win: 2x qualified demos in 60 days.\" into the chat input box"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Trigger: churn risk from inconsistent pipeline.\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a new AI-generated question is visible in the chat interface"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Submitting an empty message does not advance the discovery chat",
+    "description": "Verifies that submitting an empty answer does not add a user message to the transcript or advance to a new AI question.",
+    "category": "Discovery Chat",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an AI-generated question is visible in the chat interface"
+      },
+      {
+        "type": "action",
+        "description": "Click in the chat input box"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Please enter a message\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the same AI-generated question is still visible in the chat interface"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Discovery chat continues across two consecutive Q&A turns",
+    "description": "Verifies the chat can handle two answer submissions and continues to produce follow-up questions each time.",
+    "category": "Discovery Chat",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Discovery\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an AI-generated question is visible in the chat interface"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Our audience is early-stage founders.\" into the chat input box"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a new AI-generated question is visible in the chat interface"
+      },
+      {
+        "type": "action",
+        "description": "Type \"They struggle most with consistent weekly distribution.\" into the chat input box"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Generate strategy successfully from discovery summary and view final results",
+    "description": "Verifies the end-to-end strategy generation pipeline shows progress spinners and ends with visible ICP and per-platform playbooks.",
+    "category": "Strategy Generation",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click to expand the discovery conversation summary section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Discovery conversation summary\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Generating strategy\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Strategist\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Quality\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"ICP\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Generate Strategy shows Strategist phase progress before results appear",
+    "description": "Verifies that after clicking Generate Strategy, the Strategist phase indicates in-progress work before any final strategy content is shown.",
+    "category": "Strategy Generation",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Strategist\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"spinner\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"platform\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"ICP\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Platform specialists phase progress is visible during strategy generation",
+    "description": "Verifies that the platform specialists phase is visibly represented while playbooks are being generated.",
+    "category": "Strategy Generation",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"spinner\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"platform specialists\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"running\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"playbook\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Quality judge phase progress is visible before final playbooks display",
+    "description": "Verifies that the quality judging step is presented to the user as an explicit in-progress phase.",
+    "category": "Strategy Generation",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"spinner\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Quality\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"judge\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"evaluating\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Final strategy results contain ICP section and multiple platform playbooks",
+    "description": "Verifies the results area includes an ICP definition and at least three platform-specific playbook sections.",
+    "category": "Strategy Generation",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Strategy results\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"ICP\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Platform\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Playbook\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Discovery summary can be collapsed without disrupting ability to generate strategy",
+    "description": "Verifies collapsing the discovery summary does not block the Generate Strategy flow and results still appear.",
+    "category": "Strategy Generation",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click to expand the discovery conversation summary section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Discovery conversation summary\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click to collapse the discovery conversation summary section"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"ICP\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Open a platform tab (Reddit) and verify all playbook sections are shown",
+    "description": "Verifies a platform playbook can be opened and contains the expected four sections.",
+    "category": "Strategy Results Display",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Reddit\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Reddit\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHERE TO GO\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHAT TO TALK ABOUT\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHAT TO SAY\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"HOW TO ENGAGE\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Verify Reddit platform quality score badge and one-line rationale are visible",
+    "description": "Confirms the platform tab displays a quality score indicator and a single-line rationale statement.",
+    "category": "Strategy Results Display",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Reddit\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Quality\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Score\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"quality score badge\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"quality rationale\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC021",
+    "title": "Switch between multiple platform tabs and confirm content updates per platform",
+    "description": "Verifies switching platform tabs shows the selected platform’s playbook content without staying stuck on the previous platform.",
+    "category": "Strategy Results Display",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Reddit\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHERE TO GO\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"LinkedIn\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHERE TO GO\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Twitter\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHERE TO GO\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC022",
+    "title": "Verify each playbook section contains visible content (not just headers)",
+    "description": "Ensures each playbook section has some visible narrative content beneath the headings for a platform.",
+    "category": "Strategy Results Display",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Reddit\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHERE TO GO\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"WHERE TO GO content\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHAT TO TALK ABOUT\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"WHAT TO TALK ABOUT content\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"WHAT TO SAY content\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC023",
+    "title": "Quality judge unavailable: show missing-quality message and warning about missing MiniMax key",
+    "description": "Verifies the UI communicates that quality scoring is unavailable and warns about missing ANTHROPIC_API_KEY when quality is not present.",
+    "category": "Strategy Results Display",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on a platform tab (for example, \"Reddit\")"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Quality judge unavailable\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"ANTHROPIC_API_KEY\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"MiniMax\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"warning\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC024",
+    "title": "When quality score is missing, the UI does not show a score badge for that platform",
+    "description": "Verifies that in the missing-quality scenario, the platform does not display a quality score badge while still showing the playbook sections.",
+    "category": "Strategy Results Display",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on a platform tab (for example, \"Reddit\")"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Quality judge unavailable\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHERE TO GO\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHAT TO TALK ABOUT\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"quality score badge\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC025",
+    "title": "ICP tab remains accessible after viewing platform tabs",
+    "description": "Verifies users can return to the ICP tab after exploring a platform playbook and still see ICP details.",
+    "category": "Strategy Results Display",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Reddit\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"WHERE TO GO\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"ICP\" tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Ideal Customer Profile\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"ICP details\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC026",
+    "title": "Valid Datadog API key shows connected/success status in sidebar",
+    "description": "Verifies that entering a valid-looking Datadog API key updates the sidebar to a visible success/connected state.",
+    "category": "Datadog Integration",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Datadog API key\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"dd_api_key_example_valid_123456\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is visible in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connection failed\" is not visible in the sidebar"
+      }
+    ]
+  },
+  {
+    "id": "TC027",
+    "title": "Invalid Datadog API key shows toast warning for connection failure",
+    "description": "Verifies that entering an invalid Datadog API key results in a visible toast warning indicating Datadog connection failure.",
+    "category": "Datadog Integration",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Datadog API key\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"invalid\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connection failed\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC028",
+    "title": "Datadog status persists after triggering app activity (Generate Strategy click)",
+    "description": "Verifies the Datadog connection status remains visible after the user triggers strategy generation.",
+    "category": "Datadog Integration",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"dd_api_key_example_valid_123456\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is visible in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is visible in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connection failed\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC029",
+    "title": "Invalid Datadog key warning remains visible after Generate Strategy click",
+    "description": "Verifies that the toast warning about Datadog connection failure remains visible after attempting to generate a strategy with an invalid key.",
+    "category": "Datadog Integration",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"bad_key_000\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connection failed\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connection failed\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC030",
+    "title": "Switching from invalid to valid Datadog API key updates status to success",
+    "description": "Verifies that correcting the Datadog API key changes the UI from failure state to success state.",
+    "category": "Datadog Integration",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"invalid\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connection failed\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"dd_api_key_example_valid_123456\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is visible in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connection failed\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC031",
+    "title": "Clearing Datadog API key shows not-connected or warning state",
+    "description": "Verifies that removing the Datadog API key results in a visible UI state indicating Datadog is not connected or cannot send data.",
+    "category": "Datadog Integration",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"dd_api_key_example_valid_123456\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is visible in the sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Type \"\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is not visible in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connection failed\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC032",
+    "title": "Datadog connection status is visible without needing to run discovery",
+    "description": "Verifies that the Datadog key input and connection status can be accessed/updated regardless of discovery flow availability.",
+    "category": "Datadog Integration",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Datadog API key\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"dd_api_key_example_valid_123456\" into \"Datadog API key\" in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog connected\" is visible in the sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Start Discovery\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC033",
+    "title": "Credentials sidebar shows Bedrock and MiniMax status indicators",
+    "description": "Verifies the sidebar displays visible status (OK or warning) for both AWS Bedrock and MiniMax credentials.",
+    "category": "Credentials Sidebar",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Bedrock\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"MiniMax\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"OK\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"warning\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC034",
+    "title": "Enter Datadog API key input accepts a value and remains visible",
+    "description": "Verifies the Datadog API key field is present and allows entering a value without breaking the UI.",
+    "category": "Credentials Sidebar",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Datadog\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Datadog API key\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"dd_test_key_12345\" into \"Datadog API key\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Datadog API key\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC035",
+    "title": "Start Over resets session state and clears entered Datadog API key",
+    "description": "Verifies clicking Start Over resets the app session and clears user-entered credential input state.",
+    "category": "Credentials Sidebar",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"dd_test_key_12345\" into \"Datadog API key\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Over\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Datadog API key\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"dd_test_key_12345\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC036",
+    "title": "Start Over clears main workflow UI content after progress has begun",
+    "description": "Verifies Start Over returns the user to a cleared baseline UI after interacting with the main flow.",
+    "category": "Credentials Sidebar",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Test product description\" into \"Product description\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Test product description\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Start Over\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Test product description\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC037",
+    "title": "When AWS credentials are missing, Generate Strategy is disabled with visible warning context",
+    "description": "Verifies the UI indicates missing AWS credentials and prevents strategy generation via a disabled control and visible warning/tooltip text.",
+    "category": "Credentials Sidebar",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"AWS\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"credentials\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Generate Strategy\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"disabled\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"missing\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC038",
+    "title": "Generate Strategy remains non-actionable when AWS credentials warning is present",
+    "description": "Verifies that attempting to use Generate Strategy does not advance the UI when AWS credentials are missing and a warning is shown.",
+    "category": "Credentials Sidebar",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"missing AWS\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Generate Strategy\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"missing AWS\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Strategy\" is not visible"
+      }
+    ]
+  }
+]
