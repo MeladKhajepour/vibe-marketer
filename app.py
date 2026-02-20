@@ -41,7 +41,7 @@ except ImportError:
     DATADOG_AVAILABLE = False
 
 BEDROCK_MODEL_ID = "us.anthropic.claude-sonnet-4-6"
-MINIMAX_MODEL_ID = "MiniMax-M2.1"
+MINIMAX_MODEL_ID = "MiniMax-M2.5"
 MINIMAX_DISCOVERY_MODEL_ID = "MiniMax-M2.5"
 MINIMAX_BASE_URL = "https://api.minimax.io/anthropic"
 DEFAULT_PRODUCT = "An AI workout tracking app called Sage that tracks progressive overload"

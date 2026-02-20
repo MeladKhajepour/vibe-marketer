@@ -38,7 +38,7 @@ Phase 3 — Platform Playbooks (Amazon Bedrock / Claude Sonnet 4.6) [PARALLEL]
                    wrapped in code blocks for one-click copy)
     - HOW TO ENGAGE: step-by-step execution (before posting, responding, DMs, red flags)
 
-Phase 4 — Quality Judging (MiniMax M2.1) [PARALLEL]
+Phase 4 — Quality Judging (MiniMax M2.5) [PARALLEL]
   One Quality Judge per platform, running concurrently
   Cross-model evaluation (MiniMax judges Claude's output — avoids self-grading bias)
   Scored on: Platform Fit (30pts) + Copy Strength (30pts) + ICP Precision (25pts) + Actionability (15pts)
@@ -47,7 +47,7 @@ Phase 4 — Quality Judging (MiniMax M2.1) [PARALLEL]
 ```
 
 **Total Bedrock calls:** 4 (1 Strategist + 3 Specialists)
-**Total MiniMax calls:** 3 discovery (M2.5) + 3 judges (M2.1)
+**Total MiniMax calls:** 3 discovery (M2.5) + 3 judges (M2.5)
 **Wall time:** ~13s (specialists and judges each run in parallel via ThreadPoolExecutor)
 
 ---
@@ -58,7 +58,7 @@ Phase 4 — Quality Judging (MiniMax M2.1) [PARALLEL]
 |---|---|
 | UI | Streamlit |
 | Strategy + Playbooks | Amazon Bedrock (Claude Sonnet 4.6 — `us.anthropic.claude-sonnet-4-6`) |
-| Discovery + Quality Judging | MiniMax M2.5 / M2.1 via Anthropic-compatible API |
+| Discovery + Quality Judging | MiniMax M2.5 via Anthropic-compatible API |
 | Metrics | Datadog API v2 (`datadog-api-client`) |
 | LLM Observability Logs | Datadog Logs (`requests` → `http-intake.logs.datadoghq.com`) |
 | Parallelism | `concurrent.futures.ThreadPoolExecutor` |
@@ -111,4 +111,4 @@ DD_API_KEY                 Datadog API key (metrics + logs)
 | `DISCOVERY_SYSTEM_PROMPT` | MiniMax M2.5 | Extracts Trigger/Hack/Win via 1–3 questions |
 | `PROMPT_TEMPLATE` | Claude Sonnet 4.6 | Strategist — ICP + top 3 platforms |
 | `PLATFORM_SPECIALIST_PROMPT` | Claude Sonnet 4.6 | Full playbook per platform (4 sections) |
-| `QUALITY_JUDGE_PROMPT` | MiniMax M2.1 | Cross-model quality scorer (0–100) |
+| `QUALITY_JUDGE_PROMPT` | MiniMax M2.5 | Cross-model quality scorer (0–100) |
