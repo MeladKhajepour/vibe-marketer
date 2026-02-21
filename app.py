@@ -49,15 +49,20 @@ MAX_DISCOVERY_ROUNDS = 3
 
 DISCOVERY_SYSTEM_PROMPT = """You are an elite, no-nonsense AI Growth Marketer for "vibe coders" and solo developers. Your goal is to gather just enough info to identify their Ideal Customer Profile (ICP) and find where that ICP hangs out online.
 
-You need to understand three vectors:
-1. THE TRIGGER: What specific, painful event forces someone to look for this solution?
-2. THE HACK: How is the target user currently duct-taping this problem together?
-3. THE WIN: What specific metric or outcome improves if this product works perfectly?
+You need to confirm three vectors — and each one must come explicitly from the user, not inferred or assumed from the product description:
+
+1. THE TRIGGER: What specific, painful event forces someone to look for this solution? (Must be stated by the user in their own words — not guessed from the product description.)
+2. THE HACK: How is the target user currently duct-taping this problem together? (Must be stated by the user — what tool, method, or workaround are they using today?)
+3. THE WIN: What specific metric or outcome improves if this product works perfectly? (Must be stated by the user — a concrete result, not a vague benefit.)
+
+INTERNAL CHECK (do this silently before every response):
+- TRIGGER confirmed from user's own words? YES / NO
+- HACK confirmed from user's own words? YES / NO
+- WIN confirmed from user's own words? YES / NO
 
 RULES:
-- Analyze what the user has told you so far. Identify which vectors are CLEAR vs MISSING.
-- If you're missing info on any vector, ask ONE question to fill the most critical gap. Be casual, direct, developer-friendly.
-- If you have enough context to understand all 3 vectors clearly, respond with exactly: READY
+- If any vector is NO, ask ONE question targeting the most critical missing vector. Be casual, direct, developer-friendly.
+- Only respond READY when all three are YES — explicitly stated by the user, not inferred.
 - Never ask more than one question per turn.
 - Never repeat a question the user already answered.
 - Keep it brief. No fluff.
@@ -372,10 +377,12 @@ def send_datadog_log(api_key: str | None, platform: str, product_desc: str,
             json=payload,
             timeout=5,
         )
+        log.info("Datadog log response status=%s body=%s", resp.status_code, resp.text[:300])
         resp.raise_for_status()
         log.info("Datadog log sent for platform=%s (status=%s)", platform, resp.status_code)
     except Exception as e:
-        log.warning("Datadog log failed for %s: %s", platform, e)
+        log.warning("Datadog log failed for %s: %s — response: %s", platform, e,
+                    getattr(resp, "text", "no response") if "resp" in dir() else "no response")
         raise
 
 
@@ -529,21 +536,16 @@ def main():
             # Add user message
             st.session_state["discovery_chat"].append({"role": "user", "content": user_input})
             st.session_state["discovery_round"] += 1
-            
-            # Check if we've hit max rounds
-            if st.session_state["discovery_round"] > MAX_DISCOVERY_ROUNDS:
-                st.session_state["discovery_complete"] = True
-                st.rerun()
-            
-            # Get next question from MiniMax
+
+            # Always call MiniMax so it can process the answer and decide READY or ask again
             try:
                 response = invoke_minimax_discovery(
-                    minimax_api_key, 
+                    minimax_api_key,
                     st.session_state["discovery_chat"]
                 )
                 st.session_state["discovery_chat"].append({"role": "assistant", "content": response})
-                
-                if response.strip().upper() == "READY":
+
+                if response.strip().upper() == "READY" or st.session_state["discovery_round"] > MAX_DISCOVERY_ROUNDS:
                     st.session_state["discovery_complete"] = True
                 st.rerun()
             except Exception as e:
@@ -698,6 +700,7 @@ def main():
                             win=win,
                         )
                         st.session_state["datadog_sent"] = True
+                        st.toast(f"Datadog: logged {pname}", icon="✅")
                     except Exception as dd_err:
                         log.warning("Datadog metric failed for %s: %s", pname, dd_err)
                         st.toast(f"⚠️ Datadog metric failed for {pname}: {dd_err}", icon="⚠️")
